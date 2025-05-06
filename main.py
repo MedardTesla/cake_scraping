@@ -94,10 +94,10 @@ def get_list_recette(url):
         items = {"titre":titre, "url":url_, "url_image":url_image}
         list_recette.append(items)
 
-    print(list_recette)
-    return []
+    print(len(list_recette))
+    return list_recette
 
-get_list_recette("https://www.cuisine-libre.org/boulangerie-et-patisserie?mots%5B%5D=83&max=1000")
+get_list_recette("https://www.cuisine-libre.org/boulangerie-et-patisserie?mots%5B%5D=83&max=632")
     
 # get_cake_data(get_cake_page(url))
     
