@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+import json
+
 HEADERS = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59"}
 
 # try:
@@ -25,6 +27,7 @@ def get_time_recette(recipe_infos_p, classe_name):
 
 
 def get_cake_page(url):
+    """ get web page html"""
 
     try:
         response = requests.get(url, headers=HEADERS)
@@ -34,7 +37,8 @@ def get_cake_page(url):
         print(f"An error occured: {e}")
 
 
-def get_cake_data(html):
+def get_cake_data(url):
+    html = get_cake_page(url)
     soup = BeautifulSoup(html, "html.parser")
     
     titre = reformat(str(soup.find("h1").contents[0]))
@@ -74,7 +78,6 @@ def get_cake_data(html):
                "ingredients": ingredient,
                "etapes":etapes}
     
-    print(recette)
     return recette
 
 def get_list_recette(url):
@@ -88,17 +91,26 @@ def get_list_recette(url):
         titre = reformat(item.find("strong").text)
         url_ = site_url+item.find("a")['href']
         url_image = site_url+item.find("img")['src']
+        index_int = url_image.find("?")
+        url_image = url_image[:index_int] if index_int != - 1 else url_image
 
+        recette = get_cake_data(url_)
 
-
-        items = {"titre":titre, "url":url_, "url_image":url_image}
+        items = {"titre":titre, "url":url_, "url_image":url_image, "recette":recette}
         list_recette.append(items)
 
-    print(len(list_recette))
     return list_recette
 
-get_list_recette("https://www.cuisine-libre.org/boulangerie-et-patisserie?mots%5B%5D=83&max=632")
-    
+list_recette = get_list_recette("https://www.cuisine-libre.org/boulangerie-et-patisserie?mots%5B%5D=83&max=100")
+
+list_recette_json = json.dumps(list_recette)
+
+with open("recette.json", "w") as f:
+    f.write(list_recette_json)
+
+
+# print(list_recette)
+# print(len(list_recette))
 # get_cake_data(get_cake_page(url))
     
 
