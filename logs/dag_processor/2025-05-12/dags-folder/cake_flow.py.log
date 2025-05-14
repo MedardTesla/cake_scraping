@@ -269,3 +269,19 @@
 {"timestamp":"2025-05-12T21:37:53.800587","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-05-12T21:38:24.427666","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-05-12T21:38:55.059655","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T21:39:25.680372","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T21:39:56.298623","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T21:40:27.083685","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T21:40:57.842964","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T21:41:28.532732","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T21:42:23.787290","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T21:44:24.403789","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:10:32.616401","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:11:10.186144","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:11:41.423326","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:12:13.265591","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:13:36.972223","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:15:41.736415","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:16:14.338877","level":"error","event":"Process timed out, PID: 98","logger":"airflow.utils.timeout.TimeoutPosix"}
+{"timestamp":"2025-05-12T23:17:51.056689","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-12T23:20:02.262073","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/cake_flow.py","logger":"airflow.models.dagbag.DagBag"}

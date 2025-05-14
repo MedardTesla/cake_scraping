@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
-
+import os
 import json
 
 HEADERS = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59"}
+JSON_FILE_NAME = "recette.json"
 
 # try:
 #     response = requests.get(url, headers=HEADERS)
@@ -80,7 +81,7 @@ def get_cake_data(url):
     
     return recette
 
-def get_list_recette(url):
+def get_list_recette(url, list_exist=None):
     html_data = get_cake_page(url)
     soup = BeautifulSoup(html_data, "html.parser")
     cake_ul = soup.find("div", id="recettes").find_all("div", class_="item")
@@ -94,20 +95,41 @@ def get_list_recette(url):
         index_int = url_image.find("?")
         url_image = url_image[:index_int] if index_int != - 1 else url_image
 
-        recette = get_cake_data(url_)
-
-        items = {"titre":titre, "url":url_, "url_image":url_image, "recette":recette}
-        list_recette.append(items)
+        if not (list_exist and url_ in list_exist):
+            recette = get_cake_data(url_)
+            items = {"titre":titre, "url":url_, "url_image":url_image, "recette":recette}
+            list_recette.append(items)
 
     return list_recette
 
-list_recette = get_list_recette("https://www.cuisine-libre.org/boulangerie-et-patisserie?mots%5B%5D=83&max=100")
+
+# charger donnée
+
+
+list_recette_sauvegarder = []
+
+if os.path.exists(JSON_FILE_NAME):
+    with open(JSON_FILE_NAME, "r") as f:
+        list_recette_json = f.read()
+    list_recette_sauvegarder = json.loads(list_recette_json) if json.loads(list_recette_json) else []
+
+  
+list_exclure = [item["url"] for item in list_recette_sauvegarder]
+
+
+
+
+list_new = get_list_recette("https://www.cuisine-libre.org/boulangerie-et-patisserie?mots%5B%5D=83&max=1000", list_exist=list_exclure)
+
+
+list_recette_sauvegarder.extend(list_new)
+list_recette = list_recette_sauvegarder
 
 list_recette_json = json.dumps(list_recette)
 
 with open("recette.json", "w") as f:
     f.write(list_recette_json)
-
+print("fin")
 
 # print(list_recette)
 # print(len(list_recette))

@@ -7,7 +7,7 @@ from airflow.operators.python import PythonOperator
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from pipelines.cake_pipeline import get_cake_page
+from pipelines.cake_pipeline import get_list_recette
 
 
 
@@ -25,11 +25,10 @@ dag = DAG(
 
 extract_data_from_cake_site = PythonOperator(
     task_id="extract_data_from_cake_site",
-    python_callable=get_cake_page,
-    op_kwargs={"url": "https://www.cuisine-libre.org/pouding-chomeur"},
+    python_callable=get_list_recette,
+    op_kwargs={"url":"https://www.cuisine-libre.org/boulangerie-et-patisserie?mots%5B%5D=83&max=50"},
     dag=dag
 )
 
-#Preprocessing
 
 #write
