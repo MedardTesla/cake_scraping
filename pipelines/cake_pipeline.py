@@ -5,7 +5,7 @@ import os
 import json
 
 HEADERS = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59"}
-JSON_FILE_NAME = "recette.json"
+JSON_FILE_NAME = "data/recette.json"
 
 
 site_url = "https://www.cuisine-libre.org/"
@@ -78,7 +78,42 @@ def get_cake_data(url):
     
     return recette
 
-def get_list_recette(url, list_exist=None):
+
+def get_exist_recette(_JSON_FILE_NAME):
+    """ read json file  return python list"""
+
+    list_recette_sauvegarder = []
+
+    if os.path.exists(_JSON_FILE_NAME):
+        with open(_JSON_FILE_NAME, 'r') as f:
+            list_recette_json = f.read()
+        list_recette_sauvegarder = json.loads(list_recette_json) if json.loads(list_recette_json) else []
+
+    print(list_recette_sauvegarder)
+    print(len(list_recette_sauvegarder))
+    if len(list_recette_sauvegarder) !=0:
+        list_exclure = [item["url"] for item in list_recette_sauvegarder]
+    else:
+        list_exclure = []
+    
+    return list_exclure
+
+
+    
+
+
+
+def get_list_recette(**context):
+    """Extrait les recettes du site web"""
+
+    url = context.get('url')
+    ti = context.get('ti')
+    if not ti:
+        print("Erreur: Contexte Airflow manquant, impossible d'accéder aux XComs")
+        return []
+
+    list_exist = ti.xcom_pull(task_ids="read_exist_data")
+
     html_data = get_cake_page(url)
     soup = BeautifulSoup(html_data, "html.parser")
     cake_ul = soup.find("div", id="recettes").find_all("div", class_="item")
@@ -98,3 +133,38 @@ def get_list_recette(url, list_exist=None):
             list_recette.append(items)
 
     return list_recette
+
+
+def write_data(**context):
+    """Écrit les données dans un fichier JSON """
+
+    ti = context.get('ti')
+    if not ti:
+        print("Erreur: Contexte Airflow manquant, impossible d'accéder aux XComs")
+        return
+
+
+
+
+
+    list_recette_sauvegarder = ti.xcom_pull(task_ids='read_exist_data')
+    if list_recette_sauvegarder is None:
+        list_recette_sauvegarder = []
+
+    list_new = ti.xcom_pull(task_ids='extract_data_from_cake_site')
+    print(f"Écriture: {len(list_recette_sauvegarder)} recettes existantes + {len(list_new)} nouvelles recettes")
+
+    list_recette_sauvegarder.extend(list_new)
+
+    list_recette = list_recette_sauvegarder
+    list_recette_json = json.dumps(list_recette)
+
+    with open(JSON_FILE_NAME, "w") as f:
+        f.write(list_recette_json)
+    print("fin")
+
+
+
+
+
+
