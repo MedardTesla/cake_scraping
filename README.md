@@ -33,4 +33,27 @@ This project follows the full data pipeline lifecycle:
 - PostgreSQL
 - Apache Airflow 3.0.0 (minimum)
 
+## ⚙️ Setup & Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/MedardTesla/cake_scraping.git
+cd cake_scraping
+```
+
+### 2. Install Python dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Start your services on Docker with
+
+```bash
+docker compose up airflow-init
+docker compose up
+```
+
+
+
 
