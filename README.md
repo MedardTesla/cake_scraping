@@ -28,9 +28,9 @@ This project follows the full data pipeline lifecycle:
 
 ## Requirements
 
-. Python 3.9 (minimum)
-. Docker
-. PostgreSQL
-. Apache Airflow 3.0.0 (minimum)
+- Python 3.9 (minimum)
+- Docker
+- PostgreSQL
+- Apache Airflow 3.0.0 (minimum)
 
 
