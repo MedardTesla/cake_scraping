@@ -24,7 +24,7 @@ This project follows the full data pipeline lifecycle:
 4. Running the Code With Docker
 
 ## System Architecture
-
+![system architecture](https://github.com/MedardTesla/cake_scraping/blob/main/data/Diagramme%20sans%20nom.png)
 
 ## Requirements
 
