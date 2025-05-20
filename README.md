@@ -1,7 +1,7 @@
 # 🍽️ Data engineering project for cakes
 
 Welcome to the cakes **Data Engineering project**!
-This project demonstrates a complete data pipeline that extracts recipe data from a public website ([cuis](https://cuisine-libre.org/), processes it with Apache Airflow, stores it in Azure Data Lake, transforms and migrates it with Azure Data Factory, queries it via Azure Synapse Analytics, and finally visualizes insights using Tableau.
+This project demonstrates a complete data pipeline that extracts recipe data from a public website ([cuisine-libre.org](https://cuisine-libre.org/), processes it with Apache Airflow, stores it in Azure Data Lake, transforms and migrates it with Azure Data Factory, queries it via Azure Synapse Analytics, and finally visualizes insights using Tableau.
 
 
 
